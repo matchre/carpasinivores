@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <title>Les carpasinivores</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <script type="text/javascript" src="constants.js"></script>
+  <script type="text/javascript" src="enchant.js"></script>
+  <script type="text/javascript" src="canvas.enchant.js"></script>
+  <script type="text/javascript" src="linkedlist.js"></script>
+  <script type="text/javascript" src="qlearning.js"></script>
+  <script type="text/javascript" src="graphics_abstract_enchantjs.js"></script>
+  <script type="text/javascript" src="god.js"></script>
+  <script type="text/javascript" src="ia.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+  <!-- If the phonegap library is present, set a global variable -->
+  <script type="text/javascript" src="phonegap.js" onerror="phoneGap=false;"></script>
+  <style type="text/css">
+      #controlPanel {
+      }
+      #debug2 {
+        display:block;
+      }
+   /*   #left {
+        float:left;
+        margin-right: 30px;
+        padding: 0;
+      }
+
+      #right {
+      }
+
+      #footer {
+        clear: both;
+      }*/
+
+      #main {
+        margin-top: 60px;
+      }
+
+  </style>
+
+  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  
+	<script type="text/javascript">
+	function getMobile() {
+	  isMobile={
+		Android: function() {
+		  return navigator.userAgent.match(/Android/i) ? true : false;
+		},
+		BlackBerry: function() {
+		  return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+		},
+		iOS: function() {
+		  return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+		},
+		Windows: function() {
+		  return navigator.userAgent.match(/IEMobile/i) ? true : false;
+		},
+		WebOS: function() {
+		  return navigator.userAgent.match(/webOS/i) ? true : false;
+		},
+		Symbian: function() {
+		  return navigator.userAgent.match(/SymbianOS/i) ? true : false;
+		},
+		any: function() {
+		  return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows() || isMobile.WebOS() || isMobile.Symbian() );
+		}
+	  };
+	  return (isMobile);
+	}
+
+	</script>
+</head>
+<body>
+
+<script type="text/javascript">
+	document.body.onload=function() {
+	  if (getMobile().any()==true) {
+		if (getMobile().Android()==true) document.getElementById('getTheApp_android').style.display='';
+		if (getMobile().iOS()==true) document.getElementById('getTheApp_ios').style.display='';
+		if (getMobile().Windows()==true) document.getElementById('getTheApp_windows').style.display='';
+		if (getMobile().BlackBerry()==true) document.getElementById('getTheApp_blackberry').style.display='';
+		if (getMobile().WebOS()==true) document.getElementById('getTheApp_webos').style.display='';
+		if (getMobile().Symbian()==true) document.getElementById('getTheApp_symbian').style.display='';
+	  }
+	  else {
+	    if (document.getElementById('getTheApps')!=null)
+	      document.getElementById('getTheApps').style.display='';
+	  }
+	  if (phoneGap==false) {
+	    document.getElementById('getTheAppsWide').style.display='none';
+          }
+	};
+</script>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="index.html" style="margin: 0; margin-right: 30px; margin-top: 3px; padding:0;"><img src="logo.png" style="height: 35px; padding: 0; margin: 0;"/></a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="index.html">Documentation</a></li>
+          <li><a href="simulator.html">Simulateur</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="main">
+
+<div id="getTheAppsWide">
+<p id="getTheApp_android" style="display: none"><a href="https://build.phonegap.com/apps/163737/download/android">Download Android app</a></p>
+<p id="getTheApp_ios" style="display: none"><a href="https://build.phonegap.com/apps/163737/download/iosd">Download iOS app</a></p>
+<p id="getTheApp_winphone" style="display: none"><a href="https://build.phonegap.com/apps/163737/download/winphone">Download Windows phone app</a></p>
+<p id="getTheApp_blackberry" style="display: none"><a href="https://build.phonegap.com/apps/163737/download/blackberry">Download Blackberry app</a></p>
+<p id="getTheApp_webos" style="display: none"><a href="https://build.phonegap.com/apps/163737/download/webos">Download WebOS app</a></p>
+<p id="getTheApp_symbian" style="display: none"><a href="https://build.phonegap.com/apps/163737/download/symbian">Download Symbian app</a></p>
+<div id="getTheApps" style="display: none"><a href="getTheApps.html">T&eacute;l&eacute;charger l'application mobile</a></div>
+</div>
+<h1>Param&egrave;tres de la simulation</h1>
+
+<ul>
+<li><p><strong>Game mode</strong> (mode de jeu)</p>
+
+<ul>
+<li><p><strong>Survival of the species</strong> (survie de l'esp&egrave;ce)</p>
+
+<p>Dans ce mode vous &eacute;crivez un programme qui sera utilis&eacute; par
+tous les &ecirc;tres-verts. Votre objectif est de permettre la
+survie de votre esp&egrave;ce.</p></li>
+<li><p><strong>Survival of an individual</strong> (survie d'un individu)</p>
+
+<p>Dans ce mode vous &eacute;crivez un programme qui sera utilis&eacute; par un
+seul &ecirc;tre-vert (celui avec une bordure noire). Les autres
+&ecirc;tres-verts, s'il y en a, sont des « b&ecirc;tes » avec un
+comportement pr&eacute;-programm&eacute;. Votre objectif est que votre
+&ecirc;tre-vert survive aussi longtemps que possible.</p></li>
+<li><p><strong><a href="qlearning.html">Q-Learning</a></strong> (apprentissage 'Q')</p>
+
+<p>Dans ce mode vous n'entrez pas de code dans le fen&ecirc;tre de code
+(celui-ci sera ignor&eacute;). Un individu (celui avec une bordure
+noire) est dot&eacute; d'un syst&egrave;me d'apprentissage bas&eacute; sur
+l'exp&eacute;rience. Au fur et &agrave; mesure de sa progression, cet
+individu devient capable de progresser de mani&egrave;re de plus en
+plus 'intelligente'. Ce processus peut prendre plusieurs
+dizaines de minutes et d&eacute;montre le principe d'apprentissage
+par renforcement.</p></li>
+</ul></li>
+<li><p><strong>Width</strong> (largeur)</p>
+
+<p>Largeur de l'aire de simulation. Il est d&eacute;conseill&eacute; de param&eacute;trer
+des aires de simulations trop petites, car les algorithmes du
+simulateur sont moins pr&eacute;cis quand la densit&eacute; d'&eacute;l&eacute;ments sur la
+sc&egrave;ne est trop grande. Dans tous les cas, ne pas aller en-de&ccedil;&agrave; de
+5x5. La taille par d&eacute;faut est 15x10</p></li>
+<li><p><strong>Height</strong> (hauteur)</p>
+
+<p>Voir Width</p></li>
+<li><p><strong>Rain factor</strong></p>
+
+<p>Quantit&eacute; de pluie. Entrez 0 pour ne pas avoir de pluie. La valeur
+par d&eacute;faut est 0.05</p>
+
+<p>Cette valeur peut aussi &ecirc;tre n&eacute;gative, auquel cas des flaques
+d'eau disparaissent al&eacute;atoirement. Les deux derni&egrave;res flaques ne
+seront jamais supprim&eacute;es.</p></li>
+<li><p><strong>Kill factor</strong></p>
+
+<p>Vitesse &agrave; laquelle les &ecirc;tres-verts meurent au contact des
+&ecirc;tres-rouges. Entrez 0 pour que les &ecirc;tres-verts soient immunis&eacute;s
+contre les &ecirc;tres-rouges.</p>
+
+<p>Ce param&egrave;tre n'influence pas la vitesse &agrave; laquelle les
+&ecirc;tres-rouges se nourissent au contact des &ecirc;tres-verts. La valeur
+par d&eacute;faut est 0.4</p></li>
+<li><p><strong>Eat factor</strong></p>
+
+<p>Vitesse &agrave; laquelle les &ecirc;tres-rouges se nourissent au contact des
+&ecirc;tres-verts.</p>
+
+<p>Ce param&egrave;tre n'influence pas la vitesse &agrave; laquelles les
+&ecirc;tres-verts meurent au contact des &ecirc;tres-rouges. La valeur pas
+d&eacute;faut est 0.4</p></li>
+<li><p><strong>Drink factor</strong></p>
+
+<p>Vitesse &agrave; laquelle les &ecirc;tres-verts boivent au contact de l'eau.</p>
+
+<p>Ce param&egrave;tre n'influence pas la vitesse &agrave; laquelle la taille des
+flaques d'eau diminuent au contact des &ecirc;tres-verts.</p></li>
+<li><p><strong>Green population</strong></p>
+
+<p>Quantit&eacute; initiale d'&ecirc;tres-verts</p></li>
+<li><p><strong>Red population</strong></p>
+
+<p>Quantit&eacute; initiale d'&ecirc;tres-rouges</p></li>
+<li><p><strong>Initial water</strong></p>
+
+<p>Nombre initial de points d'eau</p></li>
+<li><p><strong>Hunger evolution</strong></p>
+
+<p>Vitesse &agrave; laquelle la faim des &ecirc;tre-verts augmente lorsqu'ils ne
+sont pas au contact des flaques d'eau. Mettre &agrave; 0 pour que les
+&ecirc;tres-verts soient immunis&eacute;s contre la faim.</p></li>
+<li><p><strong>Lust evolution</strong></p>
+
+<p>Vitesse &agrave; laquelle la b&eacute;b&eacute;mania des &ecirc;tre-verts augmente. Mettre &agrave;
+0 pour d&eacute;sactiver la procr&eacute;ation</p></li>
+</ul>
+	</div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap-transition.js"></script>
+    <script src="bootstrap/js/bootstrap-alert.js"></script>
+    <script src="bootstrap/js/bootstrap-modal.js"></script>
+    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="bootstrap/js/bootstrap-tab.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="bootstrap/js/bootstrap-popover.js"></script>
+    <script src="bootstrap/js/bootstrap-button.js"></script>
+    <script src="bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
