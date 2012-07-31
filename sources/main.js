@@ -169,6 +169,15 @@ function loaded() {
     document.getElementById('ckoica').style.display='';
     startClicked();
   }
+  if (argParams.search('noEditor')!=-1) {
+alert('a');
+    document.getElementById('code').style.display='none';
+    document.getElementById('resetCode').style.display='none';
+  }
+
+  if (argParams!='' && argParams.search('noEditor')!=-1) {
+    document.getElementById('left').style.display='none';
+  }
 
   upMode=function(element) {document.getElementById('code').disabled=(document.getElementById('gameMode').value=='qlearning');
     document.getElementById('qLHelp').style.display=(document.getElementById('gameMode').value==='qlearning')?'':'none';
