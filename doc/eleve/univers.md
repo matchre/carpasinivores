@@ -1,3 +1,7 @@
+---
+layout: default
+title: Univers du jeu
+---
 # Univers du jeu
 
 ## L'espace de jeu

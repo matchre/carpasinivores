@@ -1,3 +1,7 @@
+---
+layout: default
+title: Traçage de rayons
+---
 # Traçage de rayons
 
 Le traçage de rayon ou *raycast* permet de déterminer la couleur de
@@ -7,7 +11,7 @@ Tous les éléments colorés du monde des carpasinivores sont
 circulaires.
 
 On utilise le même principe que pour la
-[résolution des collisions](collisions.md) pour récupérer la liste des
+[résolution des collisions](collisions.html) pour récupérer la liste des
 éléments à proximité de l'objet courant. Plus précisément, on
 détermine le quart de cercle dans lequel est le rayon (nord-ouest,
 nord-est, sud-ouest ou sud-est). Ensuite, on cherche les éléments dans

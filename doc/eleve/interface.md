@@ -1,3 +1,7 @@
+---
+layout: default
+title: Utilisation de l'interface
+---
 # Utilisation de l'interface
 
 Le simulateur comporte plusieurs panneaux qui sont utilisés dans les

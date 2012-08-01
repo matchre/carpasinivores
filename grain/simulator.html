@@ -1,3 +1,6 @@
+---
+title: Simulateur de carpasinivores
+---
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,17 +8,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no"> 
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <script type="text/javascript" src="constants.js"></script>
-  <script type="text/javascript" src="enchant.js"></script>
-  <script type="text/javascript" src="canvas.enchant.js"></script>
-  <script type="text/javascript" src="linkedlist.js"></script>
-  <script type="text/javascript" src="qlearning.js"></script>
-  <script type="text/javascript" src="graphics_abstract_enchantjs.js"></script>
-  <script type="text/javascript" src="god.js"></script>
-  <script type="text/javascript" src="ia.js"></script>
-  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="js/constants.js"></script>
+  <script type="text/javascript" src="js/enchant.js"></script>
+  <script type="text/javascript" src="js/canvas.enchant.js"></script>
+  <script type="text/javascript" src="js/linkedlist.js"></script>
+  <script type="text/javascript" src="js/qlearning.js"></script>
+  <script type="text/javascript" src="js/graphics_abstract_enchantjs.js"></script>
+  <script type="text/javascript" src="js/god.js"></script>
+  <script type="text/javascript" src="js/ia.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
   <!-- If the phonegap library is present, set a global variable -->
-  <script type="text/javascript" src="phonegap.js" onerror="phoneGap=false;"></script>
+  <script type="text/javascript" src="{{ site.baseurl }}phonegap.js" onerror="phoneGap=false;"></script>
   <style type="text/css">
       #controlPanel {
       }
@@ -41,8 +44,8 @@
 
   </style>
 
-  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-  <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="{{ site.baseurl }}assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="{{ site.baseurl }}assets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body onload="loaded();">
 
@@ -54,10 +57,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="index.html" style="margin: 0; margin-right: 30px; margin-top: 3px; padding:0;"><img src="logo.png" style="height: 35px; padding: 0; margin: 0;"/></a>
+      <a class="brand" href="index.html" style="margin: 0;  margin-right: 30px; margin-top: 3px; padding:0;"><img src="{{ site.baseurl }}images/logo.png" style="height: 35px; padding: 0; margin: 0;"/></a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li><a href="index.html">Documentation</a></li>
+          <li><a href="{{ site.baseurl }}index.html">Documentation</a></li>
           <li class="active"><a href="simulator.html">Simulateur</a></li>
         </ul>
       </div>
@@ -72,7 +75,7 @@
 <input type="button" name="stop" value="Stop" id="stop" onclick="stop();" style="display: none; margin-right: 50px;" />
 <input type="button" name="restart" value="Restart" id="restart" onclick="location='#autoStart=true'; location.reload(true);" style="display: none;" />
 <input type="button" name="retry" value="Reconfigure" id="retry" onclick="location.reload(true);" style="display:none" />
-<input type="button" onclick="location='index.html';" id="ckoica" style="display: none;" value="En savoir plus" />
+<input type="button" onclick="location='{{ site.baseurl }}index.html';" id="ckoica" style="display: none;" value="En savoir plus" />
 </p>
 
 <div class="container-fluid">
@@ -121,7 +124,7 @@
 <tr><td><label for="gameMode">Game mode</label></td><td><select id="gameMode">
 <option value="species">Survival of the species</option><option value="survival">Survival of an individual</option>
 <option value="qlearning">Q-Learning</option><option value="csv">CSV Logging</option></select></td></tr>
-<tr><td></td><td><a href="qlearning.html" id="qLHelp" style="display:none">Aide sur le Q-Learning</a></td></tr>
+<tr><td></td><td><a href="{{ site.baseurl }}doc/science/qlearning.html" id="qLHelp" style="display:none">Aide sur le Q-Learning</a></td></tr>
 <tr><td><label for="width">Width</label></td><td><input type="text" value="6" id="width" size="5" /></td></tr>
 <tr><td><label for="height">Height</label></td><td><input type="text" value="6" id="height" size="5" /></td></tr>
 <tr><td><label for="rain">Rain factor</label></td><td><input type="text" value="0.02" id="rain" size="5" /></td></tr>
@@ -161,19 +164,19 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap/js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap-transition.js"></script>
-    <script src="bootstrap/js/bootstrap-alert.js"></script>
-    <script src="bootstrap/js/bootstrap-modal.js"></script>
-    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="bootstrap/js/bootstrap-tab.js"></script>
-    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="bootstrap/js/bootstrap-popover.js"></script>
-    <script src="bootstrap/js/bootstrap-button.js"></script>
-    <script src="bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/jquery.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-button.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="{{ site.baseurl }}assets/bootstrap/js/bootstrap-typeahead.js"></script>
 </body>
 </html>
 

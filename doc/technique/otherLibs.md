@@ -1,3 +1,7 @@
+---
+layout: default
+title: Autres bibliothèques JS
+---
 # Coup d'oeil rapide aux autres librairies proposées pour le projet
 
 ##  LimeJS

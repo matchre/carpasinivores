@@ -1,5 +1,8 @@
-Algorithme de choix de l'action dans un processur d'apprentissage Q-Learning
-============================================================================
+---
+layout: default
+title: Algorithme de choix de l'action dans un processus d'apprentissage Q-Learning
+---
+# Algorithme de choix de l'action dans un processus d'apprentissage Q-Learning
 
 Le but de l'algorithme est de choisir l'action optimale dans une Q-Table sachant l'état actuel S.
 
@@ -8,8 +11,7 @@ Supposons que les trois actions possibles soient notées A1, A2, A3.
 On pourrait prendre la valeur maximale parmi q[S][A1], q[S][A2], q[S][A3] mais l'être-vert risquerait de se bloquer en ne faisant qu'une
 seule action, empêchant le renforcement des autres comportements.
 
-Description formelle
---------------------
+## Description formelle
 
 L'idée de cet algorithme est que Pr{A}/Pr{A'}=q[S][A]/q[S][A'] pour toues les actions A et A'.
 
@@ -17,8 +19,7 @@ Ainsi, la probabilité de sélectionner une action A est proportionnelle à sa v
 
 Cela revient à normaliser les q[S][A] sur A, c'est-à-dire si on divise Q[S][A] pour tout A par un même nombre d tel que la somme sur A des Q[S][A] vaille sum_A(Q[S][A])=1.
 
-Processus de normalisation
---------------------------
+## Processus de normalisation
 
 L'algorithme est en réalité implémenté de façon à ce que la normalisation des Q[S][A] sur A ne soit pas nécessaire, mais il est indispensable de comprendre
 ce processus.
@@ -43,8 +44,7 @@ Ainsi dans notre exemple on a d=9 donc après normalisation,
 
 - Q[S][A3]=1/9
 
-Choix de l'action
------------------
+## Choix de l'action
 
 Toujours avec notre exemple, on cherche à choisir une action A telle que Pr{A1}=1/3, Pr{A2}=5/9 et Pr{A3}=1/9.
 
@@ -63,8 +63,7 @@ L'algorithme pour faire cela est le suivant :
       FinSi
     FinRépéter
 
-En pratique
------------
+## En pratique
 
 Plutôt que de normaliser le tableau Q, nous avons préféré utiliser le même algorithme, mais en sélectionnant un nombre aléatoire à distribution uniforme entre 0 et sum_A(q[S][A]).
 
@@ -80,24 +79,25 @@ mais on choisit un nombre aléatoire entre 0 et 9. S'il est entre 0 et 3 on choi
 
 L'algorithme devient (en javascript) : 
 
-    function pickAction(currentState) {
-      var sum=0;
-      for (var i=0; i<3; i++)
+{% highlight javascript %}
+function pickAction(currentState) {
+    var sum=0;
+    for (var i=0; i<3; i++)
         sum+=q[currentState.vision][currentState.lastAction][i];
-      var r=Math.random()*sum;
-      var runningSum=0, a=0;
-      for (var n=0; n<3; n++) {
+    var r=Math.random()*sum;
+    var runningSum=0, a=0;
+    for (var n=0; n<3; n++) {
         runningSum+=q[currentState.vision][currentState.lastAction][n];
         if (r<runningSum) {
-          a=n;
-          break;
+            a=n;
+            break;
         }
-      }
-      return (a);
     }
+    return (a);
+}
+{% endhighlight %}
 
-Dernier ajustement
-------------------
+## Dernier ajustement
 
 Malgré son efficacité, cet algorithme soulève deux problèmes importants : 
 
@@ -115,19 +115,20 @@ q[A][S], on traite q[A][S]+0.01
 
 L'algorithme devient (en javascript) : 
 
-    function pickAction(currentState) {
-      var sum=0;
-      for (var i=0; i<3; i++)
+{% highlight javascript %}
+function pickAction(currentState) {
+    var sum=0;
+    for (var i=0; i<3; i++)
         sum+=q[currentState.vision][currentState.lastAction][i]+0.01;
-      var r=Math.random()*sum;
-      var runningSum=0, a=0;
-      for (var n=0; n<3; n++) {
+    var r=Math.random()*sum;
+    var runningSum=0, a=0;
+    for (var n=0; n<3; n++) {
         runningSum+=q[currentState.vision][currentState.lastAction][n]+0.01;
         if (r<runningSum) {
-          a=n;
-          break;
+            a=n;
+            break;
         }
-      }
-      return (a);
     }
-
+    return (a);
+}
+{% endhighlight %}

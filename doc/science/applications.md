@@ -1,3 +1,7 @@
+---
+layout: default
+title: Simulation au niveau de la population - la problématique proies-prédateurs
+---
 # Simulation au niveau de la population : la problématique proies-prédateurs
 
 ## Équilibre proies-prédateurs avec deux espèces
@@ -32,7 +36,7 @@ dépend par contre du nombre d'êtres-verts au carré.
 Cependant, en laissant ce modèle évoluer, on obtient des oscillations
 semblables à celles du modèle Lotka-Volterra :
 
-![](graph_two_species.png)
+![](images/graph_two_species.png)
 
 ## Équilibre proies-prédateurs avec trois espèces
 
@@ -42,4 +46,4 @@ d'êtres-rouges au cours du temps durant une simulation avec des
 êtres-verts, des êtres-rouges et de l'eau (quantité d'eau non
 représentée) :
 
-![](graph_three_species.png)
+![](images/graph_three_species.png)

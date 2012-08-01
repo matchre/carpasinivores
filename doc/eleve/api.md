@@ -1,3 +1,7 @@
+---
+layout: default
+title: API
+---
 # API
 
 Le code entré dans la fenêtre de code est exécuté à chaque itération

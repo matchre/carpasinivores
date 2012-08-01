@@ -1,4 +1,8 @@
-# Apprentissage par récompense (ou ré-enforcement) : le «Q-learning»
+---
+layout: default
+title: Apprentissage par récompense (ou renforcement) - le Q-learning
+---
+# Apprentissage par récompense (ou renforcement) : le «Q-learning»
 
 Dans ce mode, tous les êtres-verts sont des « bêtes » gérées par
 l'ordinateur, mais celui qui a une bordure noire a un algorithme
@@ -25,7 +29,7 @@ S, l'élement lira dans la Q-Table quelle est la meilleure récompense
 attendue parmi (S;avancer), (S;gauche) et (S;droite). Il sélectionnera
 ensuite l'action ayant la meilleure récompense attendue.
 
-[Infos à propos de l'algorithme de sélection de la meilleure action](algoChoixAction.md)
+[Infos à propos de l'algorithme de sélection de la meilleure action](algoChoixAction.html)
 
 Bien sûr le contenu de la Q-Table est essentiel au processur
 d'apprentissage. L'idée du Q-Learning est de remplir la table pendant
@@ -49,7 +53,7 @@ nouvel état S' dans lequel il arrive.
 
 Voici l'algorithme actuel de Q-Learning : 
 
-```javascript
+{% highlight javascript %}
 var gamma=0.97;
 //a corresponds to the current action
 
@@ -61,4 +65,4 @@ for (var i=0; i<3; i++) {
 }
     
 q[currentState.vision][currentState.lastAction][a]=payoff+gamma*maxQ;
-```
+{% endhighlight %}

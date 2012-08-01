@@ -1,3 +1,7 @@
+---
+layout: default
+title: Paramètres de la simulation
+---
 # Paramètres de la simulation
 
 - **Game mode** (mode de jeu)

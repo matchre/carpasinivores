@@ -1,3 +1,7 @@
+---
+layout: default
+title: Gestion des collisions
+---
 # Gestion des collisions
 
 L'aire de jeu est découpée en cellules de 40x40 pixels. Chaque cellule
@@ -18,7 +22,7 @@ méthodes pour faire cela :
 - Limiter l'amplitude du déplacement à la distance maximale pour
   laquelle il n'y a pas de collision
 
-    ![](collision1.png)
+    ![](images/collision1.png)
 
     Dans ce cas la direction du déplacement est préservée,
     c'est-à-dire que l'objet ne sera jamais déplacé selon un axe autre
@@ -30,7 +34,7 @@ méthodes pour faire cela :
 - « Sortir » l'objet de l'obstacle en effectuant le déplacement le plus
   court possible
 
-    ![](collision2.png)
+    ![](images/collision2.png)
 
     Dans ce cas l'objet 'glisse' sur les obstacles et ne reste pas
     bloqué. C'est cette approche qui a été choisie pour les

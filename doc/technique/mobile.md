@@ -1,3 +1,7 @@
+---
+layout: default
+title: Déploiement sur plateformes mobiles
+---
 # Déploiement sur plateformes mobiles
 
 Nous avons utilisé [PhoneGap](https://build.phonegap.com) en le connectant directement à notre dépôt

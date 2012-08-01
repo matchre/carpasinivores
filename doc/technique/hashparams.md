@@ -1,3 +1,7 @@
+---
+layout: default
+title: Hash parameters
+---
 # Hash parameters
 
 Les carpasinivores utilisent une fonctionnalité assez peu répandue
