@@ -1,6 +1,6 @@
 # Carpasinivores
 
-Grain 3.0 : [les carpasinivores](http://198.245.54.228/carpasinivores)
+Grain 3.0 : [les carpasinivores](http://inriamecsci.github.com/carpasinivores)
 
 ## Repository architecture
 
