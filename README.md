@@ -4,10 +4,9 @@ Grain 3.0 : [les carpasinivores](http://inriamecsci.github.com/carpasinivores)
 
 ## Repository architecture
 
-- `index.html`
+- `index.md`
 
-    Redirects to `release/index.html`. Required because PhoneGap only
-    pulls its app from the repo root.
+    Main menu (Markdown markup)
 
 - `config.xml` and `icon.png`
 
@@ -15,29 +14,29 @@ Grain 3.0 : [les carpasinivores](http://inriamecsci.github.com/carpasinivores)
 
 The git repository has 4 top-level folders : 
 
-- `/sources`
+- `/grain`
   
-    We didn't use 'src' because on blackberry devices this name is
-    reserved.
-
-    Contains the js, png, xcf and html sources of the simulator.
+    The heart of our algorithm. Contains main simulator webpage and
+    javascript files.
 
 - `/doc`
   
-    Contains md, xcf and png files (sources of the doc). The md files
-    are dynamically converted to html by `tools/publish.sh`.
+    Contains md, xcf and png files (sources of the doc). All the
+    static pages of the website are here.
 
-    `doc/headerHTML` and `doc/footerHTML` are app-(prep-)ended to
-    generated HTML files.
+- `_layouts`
 
-- `/tools`
+    Contains Jekyll layouts. All files with
+    [YAML Front Matter block](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter)
+    will be transformed by Jekyll according to the layout.
+
+- `/assets`
   
-    Contains `publish.sh`.
+    Mainly Twitter Bootstrap files.
 
-- `/release`
-  
-    Contains the generated app. This must stay on GitHub because PhoneGap
-    gets its sources directly from GitHub.
+- `/images`
+
+    Main logo.
 
 ## API
 
