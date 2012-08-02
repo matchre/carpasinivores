@@ -82,15 +82,43 @@ title: Simulateur de carpasinivores
 <div class="row-fluid">
 
 <div id="left" class="span6">
-<!-- Play/code area -->
-<textarea id="code" class="field span 12" rows="34" cols="90">
-</textarea>
-<br /><input id="resetCode" type="button" value="Reset to default code" onclick="confirm('You\'ll lose all your code !') && resetCode();" />
+
+<!-- Initial values form -->
+<h3 id="paramsForm_">Simulation parameters</h3>
+<form id="paramsForm" onsubmit="startClicked()">
+<table>
+<tr><td><label for="gameMode">Game mode</label></td><td><select id="gameMode">
+<option value="species">Survival of the species</option><option value="survival">Survival of an individual</option>
+<option value="qlearning">Q-Learning</option><option value="csv">CSV Logging</option></select></td></tr>
+<tr><td></td><td><a href="{{ site.baseurl }}doc/science/qlearning.html" id="qLHelp" style="display:none">Aide sur le Q-Learning</a></td></tr>
+<tr><td><label for="width">Width</label></td><td><input type="text" value="6" id="width" size="5" /></td></tr>
+<tr><td><label for="height">Height</label></td><td><input type="text" value="6" id="height" size="5" /></td></tr>
+<tr><td><label for="rain">Rain factor</label></td><td><input type="text" value="0.02" id="rain" size="5" /></td></tr>
+<tr><td><label for="kill">Kill factor</label></td><td><input type="text" value="0.4" id="kill" size="5" /></td></tr>
+<tr><td><label for="eat">Eat factor</label></td><td><input type="text" value="0.4" id="eat" size="5" /></td></tr>
+<tr><td><label for="drink">Drink factor</label></td><td><input type="text" value="0.4" id="drink" size="5" /></td></tr>
+<tr><td><label for="green">Green population</label></td><td><input type="text" value="5" id="green" size="5" /></td></tr>
+<tr><td><label for="red">Red population</label></td><td><input type="text" value="3" id="red" size="5" /></td></tr>
+<tr><td><label for="water">Initial water</label></td><td><input type="text" value="2" id="water" size="5" /></td></tr>
+<tr><td><label for="hunger">Hunger evolution</label></td><td><input type="text" value="0.02" id="hunger" size="5" /></td></tr>
+<tr><td><label for="lust">Lust evolution</label></td><td><input type="text" value="0.02" id="lust" size="5" /></td></tr>
+</table>
+<input type="button" value="Reset to default settings" onclick="confirm('You\'ll lose all your settings !') && document.getElementById('paramsForm').reset();" id="resetParams" /><br />
+<a onclick="showLink();" href="#" id="shareConfig">Share this configuration</a><br />
+</form>
+
+<!-- Game and score areas -->
 <div id="container" style="width: 300px;"></div>
 <div id="score"></div>
 </div>
 
 <div id="right" class="span6">
+
+<!-- Editor code area -->
+<textarea id="code" class="field span 12" rows="34" cols="90">
+</textarea>
+<br /><input id="resetCode" type="button" value="Reset to default code" onclick="confirm('You\'ll lose all your code !') && resetCode();" />
+
 <!-- Log/control area -->
 <div id="controlPanel" style="display: none;">
   <h3 id="controlPanel_">Control panel</h3>
@@ -116,30 +144,6 @@ title: Simulateur de carpasinivores
 <tr><td>Left</td><td id="q10"></td><td id="q11"></td><td id="q12"></td></tr>
 <tr><td>Right</td><td id="q20"></td><td id="q21"></td><td id="q22"></td></tr>
 </table>
-
-<!-- Initial values form -->
-<h3 id="paramsForm_">Simulation parameters</h3>
-<form id="paramsForm" onsubmit="startClicked()">
-<table>
-<tr><td><label for="gameMode">Game mode</label></td><td><select id="gameMode">
-<option value="species">Survival of the species</option><option value="survival">Survival of an individual</option>
-<option value="qlearning">Q-Learning</option><option value="csv">CSV Logging</option></select></td></tr>
-<tr><td></td><td><a href="{{ site.baseurl }}doc/science/qlearning.html" id="qLHelp" style="display:none">Aide sur le Q-Learning</a></td></tr>
-<tr><td><label for="width">Width</label></td><td><input type="text" value="6" id="width" size="5" /></td></tr>
-<tr><td><label for="height">Height</label></td><td><input type="text" value="6" id="height" size="5" /></td></tr>
-<tr><td><label for="rain">Rain factor</label></td><td><input type="text" value="0.02" id="rain" size="5" /></td></tr>
-<tr><td><label for="kill">Kill factor</label></td><td><input type="text" value="0.4" id="kill" size="5" /></td></tr>
-<tr><td><label for="eat">Eat factor</label></td><td><input type="text" value="0.4" id="eat" size="5" /></td></tr>
-<tr><td><label for="drink">Drink factor</label></td><td><input type="text" value="0.4" id="drink" size="5" /></td></tr>
-<tr><td><label for="green">Green population</label></td><td><input type="text" value="5" id="green" size="5" /></td></tr>
-<tr><td><label for="red">Red population</label></td><td><input type="text" value="3" id="red" size="5" /></td></tr>
-<tr><td><label for="water">Initial water</label></td><td><input type="text" value="2" id="water" size="5" /></td></tr>
-<tr><td><label for="hunger">Hunger evolution</label></td><td><input type="text" value="0.02" id="hunger" size="5" /></td></tr>
-<tr><td><label for="lust">Lust evolution</label></td><td><input type="text" value="0.02" id="lust" size="5" /></td></tr>
-</table>
-<input type="button" value="Reset to default settings" onclick="confirm('You\'ll lose all your settings !') && document.getElementById('paramsForm').reset();" id="resetParams" /><br />
-<a onclick="showLink();" href="#" id="shareConfig">Share this configuration</a><br />
-</form>
 
 </div> <!-- Right -->
 
