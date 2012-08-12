@@ -12,7 +12,7 @@ Grain 3.0 : [les carpasinivores](http://inriamecsci.github.com/carpasinivores)
 
     Required by PhoneGap.
 
-The git repository has 4 top-level folders : 
+The git repository has 5 top-level folders : 
 
 - `/grain`
   
