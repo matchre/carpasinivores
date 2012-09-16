@@ -145,7 +145,8 @@ function loaded() {
   else
     resetCode();
   
-  if (argParams=='')
+  console.log('argParams='+argParams);
+  if (argParams=='' || argParams=='autoStart=true')
     var cookie=getCookie('params');
   else
     var cookie=argParams.replace(/=/g,',');  //We cheat a little since the arg params have the same syntax as the cookie
@@ -164,6 +165,12 @@ function loaded() {
   }
 
   buildQTable();
+
+     //Set cookie in case of autostart
+     var cookie=getParamsCookie(true,false);
+     console.log('setting cookie because noSetCookie is false '+cookie);
+     setCookie('params',cookie,3650);
+     setCookie('code',document.getElementById('code').value,3650);
 
   if (argParams!='' && argParams.search('autoStart')!=-1) {
     document.getElementById('ckoica').style.display='';
@@ -222,6 +229,7 @@ function resetCode() {
 
 function startClicked() {
   gameMode=document.getElementById('gameMode').value;
+  console.log('Start clicked, gameMode is '+gameMode);
   width=40*document.getElementById('width').value;
   height=40*document.getElementById('height').value;
   rainFactor=document.getElementById('rain').value;
