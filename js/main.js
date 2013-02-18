@@ -241,7 +241,7 @@ function startClicked() {
   initialWater=document.getElementById('water').value;
   hungerEvolution=document.getElementById('hunger').value;
   lustEvolution=document.getElementById('lust').value;
-  g_init(width,height,30,Array('green_selected.png','gray.png','red.png','water.png','green.png','eye.png'),init,updateWide);
+  g_init(width,height,30,Array('images/green_selected.png','images/gray.png','images/red.png','images/water.png','images/green.png','images/eye.png'),init,updateWide);
   document.getElementById('stop').style.display="";
   document.getElementById('resetCode').style.display="none";
   document.getElementById('resetParams').style.display="none";
@@ -365,7 +365,7 @@ function init() {
     e.element.rotate(Math.random()*360);
     if (i==0) {
       e.selected=true;
-      e.element.changeImage('green_selected.png');
+      e.element.changeImage('images/green_selected.png');
     }
   }
   for (var i=0; i<initialRed; i++) {
@@ -456,7 +456,7 @@ function EyedElement(parent,w,h,image) {
   this.radius=this.w/2;
   this.image=image;
   this.element=new GSprite(this.x,this.y,this.w,this.h,this.image)
-  this.eye=new GSprite(this.x,this.y,9,9,"eye.png")
+  this.eye=new GSprite(this.x,this.y,9,9,"images/eye.png")
   this.update=function() {
     if (this.x>=width) this.x-=width;
     if (this.x<0) this.x+=width;
@@ -504,7 +504,7 @@ function EyedElement(parent,w,h,image) {
 
 //All the motion member functions of Green and Red take values in pixels/sec or in degrees/sec
 function Green() {
-  this.element=new EyedElement(this,20,20,'green.png');
+  this.element=new EyedElement(this,20,20,'images/green.png');
   this.type='green';
   //Speed at which moving is not tiring
   equilibrumSpeed=10;
@@ -540,7 +540,7 @@ function Green() {
     this.cumulatedFatigueDistance+=d*deltaTime;
   }
   this.die=function() {
-    this.element.changeImage('gray.png');
+    this.element.changeImage('images/gray.png');
     this.element.eye.hide();
     this.color=4;
     this.element.color=4;
@@ -601,7 +601,7 @@ function Green() {
 //Very similar to class 'Green', refer to it for comments
 function Red() {
   //Red objects have no fatigue and no lust
-  this.element=new EyedElement(this,20,20,'red.png');
+  this.element=new EyedElement(this,20,20,'images/red.png');
   this.type='red';
   this.hunger=0.2;
   this.smellAttenuation=function(distance) {
@@ -628,7 +628,7 @@ function Red() {
     this.element.forward(d*gDeltaTime);
   }
   this.die=function() {
-    this.element.changeImage('gray.png');
+    this.element.changeImage('images/gray.png');
     this.element.eye.hide();
     this.color=4;
   }
@@ -644,7 +644,7 @@ function Red() {
 }
 
 function Water() {
-  this.element=new Element(this,40,40,'water.png');
+  this.element=new Element(this,40,40,'images/water.png');
   this.type='water';
   this.update=function() {
     this.element.update();
