@@ -85,12 +85,12 @@ function getParamsCookie(disableForm,hashParametersMode) {
   for (i in fields) {
     if (fields[i].id==undefined || fields[i].value=='' || fields[i].type!="text") continue;
     cookie+=fields[i].id+((hashParametersMode===true)?'=':',')+fields[i].value+'&';
-    if (disableForm===true) fields[i].disabled=true;
+    //FIXME if (disableForm===true) fields[i].disabled=true;
   }
   for (i in fields2) {
     if (fields2[i].id==undefined) continue;
     cookie+=fields2[i].id+((hashParametersMode===true)?'=':',')+fields2[i].value+'&';
-    if (disableForm===true) fields2[i].disabled=true;
+    //FIXME if (disableForm===true) fields2[i].disabled=true;
   }
   return (cookie);
 }
