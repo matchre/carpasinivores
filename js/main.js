@@ -13,8 +13,8 @@ function time() {
 }
 
 function getCookie(c_name) {
-  var i,x,y,ARRcookies=document.cookie.split(";");
-  for (i=0;i<ARRcookies.length;i++) {
+  var x,y,ARRcookies=document.cookie.split(";");
+  for (var i=0;i<ARRcookies.length;i++) {
     x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
     y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
     x=x.replace(/^\s+|\s+$/g,"");
@@ -27,7 +27,7 @@ function getCookie(c_name) {
 function setCookie(c_name,value,exdays) {
   var exdate=new Date();
   exdate.setDate(exdate.getDate() + exdays);
-  var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+  var c_value=escape(value) + ((exdays===null) ? "" : "; expires="+exdate.toUTCString());
   document.cookie=c_name + "=" + c_value;
 }
 
@@ -40,9 +40,9 @@ function stop() {
 
 //TODO Unused/obsolete ?
 function getElementsByClass(searchClass, domNode, tagName) {
-  if (domNode == null) domNode = document;
-  if (tagName == null) tagName = '*';
-  var el = new Array();
+  if (domNode === null) domNode = document;
+  if (tagName === null) tagName = '*';
+  var el = [];
   var tags = domNode.getElementsByTagName(tagName);
   var tcl = " "+searchClass+" ";
   for(i=0,j=0; i<tags.length; i++) { 
@@ -65,7 +65,7 @@ function getUrlParameters() {
   console.log(splitted);
   if (splitted.length>1) {
     var args=splitted[splitted.length-1].split('&');
-    for (i in args) {
+    for (var i in args) {
       console.log(args[i].split('=')[0]+' -> '+args[i].split('=')[1]);
       ret[args[i].split('=')[0]]=args[i].split('=')[1];
     }
@@ -78,17 +78,18 @@ function getUrlParameters() {
 //  disableForm -> disable the params form
 //  hashParametersMode -> use '=' instead of ','
 function getParamsCookie(disableForm,hashParametersMode) {
-  var cookie=''
+  var cookie='';
   var formNode=document.getElementById('paramsForm');
   var fields=formNode.getElementsByTagName('input');
   var fields2=formNode.getElementsByTagName('select');
+  var i;
   for (i in fields) {
-    if (fields[i].id==undefined || fields[i].value=='' || fields[i].type!="text") continue;
+    if (fields[i].id===undefined || fields[i].value==='' || fields[i].type!="text") continue;
     cookie+=fields[i].id+((hashParametersMode===true)?'=':',')+fields[i].value+'&';
-    //FIXME if (disableForm===true) fields[i].disabled=true;
+    if (disableForm===true) fields[i].disabled=false; //FIXME
   }
   for (i in fields2) {
-    if (fields2[i].id==undefined) continue;
+    if (fields2[i].id===undefined) continue;
     cookie+=fields2[i].id+((hashParametersMode===true)?'=':',')+fields2[i].value+'&';
     //FIXME if (disableForm===true) fields2[i].disabled=true;
   }
@@ -132,7 +133,7 @@ function loaded() {
   console.log('mobile : '+getMobile().any());
   var argParams='';
   var args=getUrlParameters();
-  if (args!=null) { //TODO
+  if (args!==null) { //TODO
     argParams=window.location.hash.substr(1);
     window.location='#';
   }
@@ -140,26 +141,27 @@ function loaded() {
   }
 
   var code=getCookie('code');
-  if (code!=null && code!='')
+  if (code!==null && code!=='')
     document.getElementById('code').innerHTML=code;
   else
     resetCode();
   
   console.log('argParams='+argParams);
-  if (argParams=='' || argParams=='autoStart=true')
-    var cookie=getCookie('params');
+  var cookie;
+  if (argParams==='' || argParams=='autoStart=true')
+    cookie=getCookie('params');
   else
-    var cookie=argParams.replace(/=/g,',');  //We cheat a little since the arg params have the same syntax as the cookie
+    cookie=argParams.replace(/=/g,',');  //We cheat a little since the arg params have the same syntax as the cookie
 
   console.log(cookie);
 
-  if (cookie!=null && cookie!='') {
+  if (cookie!==null && cookie!=='') {
     var fields=cookie.split('&');
-    for (i in fields) {
-      if (fields[i]=='') continue;
-      if (fields[i].split(',')[0]==null || fields[i].split(',')[0]=='') continue;
+    for (var i in fields) {
+      if (fields[i]==='') continue;
+      if (fields[i].split(',')[0]===null || fields[i].split(',')[0]==='') continue;
       var el=document.getElementById(fields[i].split(',')[0]);
-      if (el!=null)
+      if (el!==null)
         el.value=fields[i].split(',')[1];
     }
   }
@@ -167,12 +169,12 @@ function loaded() {
   buildQTable();
 
      //Set cookie in case of autostart
-     var cookie=getParamsCookie(true,false);
+     cookie=getParamsCookie(true,false);
      console.log('setting cookie because noSetCookie is false '+cookie);
      setCookie('params',cookie,3650);
      setCookie('code',document.getElementById('code').value,3650);
 
-  if (argParams!='' && argParams.search('autoStart')!=-1) {
+  if (argParams!=='' && argParams.search('autoStart')!=-1) {
     document.getElementById('ckoica').style.display='';
     startClicked();
   }
@@ -182,17 +184,17 @@ alert('a');
     document.getElementById('resetCode').style.display='none';
   }
 
-  if (argParams!='' && argParams.search('noEditor')!=-1) {
+  if (argParams!=='' && argParams.search('noEditor')!=-1) {
     document.getElementById('left').style.display='none';
   }
 
-  upMode=function(element) {document.getElementById('code').disabled=(document.getElementById('gameMode').value=='qlearning');
+  upMode=function() {document.getElementById('code').disabled=(document.getElementById('gameMode').value=='qlearning');
     document.getElementById('qLHelp').style.display=(document.getElementById('gameMode').value==='qlearning')?'':'none';
   };
   document.getElementById('gameMode').onchange=upMode;
   upMode();
 
-  if (getMobile().any()==true) {
+  if (getMobile().any()===true) {
     document.getElementById('code').cols='30';
     document.getElementById('shareConfig').style.display='none';
   }
@@ -280,7 +282,7 @@ function startClicked() {
 
   //Hide code panel
   var e1=document.getElementById('code');
-  var e2=document.getElementById('start')
+  var e2=document.getElementById('start');
   e1.style.display='none';
   e2.style.display='none';
 }
@@ -307,7 +309,7 @@ function skipToStoppedState() {
 
   //Hide code panel
   var e1=document.getElementById('code');
-  var e2=document.getElementById('start')
+  var e2=document.getElementById('start');
   e1.style.display='none';
   e2.style.display='none';
   document.getElementById('restart').style.display='';
@@ -359,16 +361,16 @@ function init() {
     var w=new Water();
     w.element.move(Math.random()*width,Math.random()*height);
   }
-  for (var i=0; i<initialGreen; i++) {
+  for (i=0; i<initialGreen; i++) {
     var e=new Green();
     e.element.move(Math.random()*width,Math.random()*height);
     e.element.rotate(Math.random()*360);
-    if (i==0) {
+    if (i===0) {
       e.selected=true;
       e.element.changeImage('images/green_selected.png');
     }
   }
-  for (var i=0; i<initialRed; i++) {
+  for (i=0; i<initialRed; i++) {
     var r=new Red();
     r.element.move(Math.random()*width,Math.random()*height);
   }
@@ -383,7 +385,7 @@ function init() {
 
 function dumpObjects() {
   debug ('Dumping objects');
-  for (var dot=colorDots.first; dot!=null; dot=dot.next) {
+  for (var dot=colorDots.first; dot!==null; dot=dot.next) {
     debug ('Color dot '+dot.x+' '+dot.y+' '+dot.color);
   }
   debug('');
@@ -409,7 +411,7 @@ function Element(parent,w,h,image) {
     if (this.y>=height) this.y-=height;
     if (this.y<0) this.y+=height;
     this.element.position(this.x-this.w/2,this.y-this.h/2);
-  }
+  };
 
   //Moves the element on screen (WILL avoid collisions, so avoid big leaps)
   this.move=function(x,y) {
@@ -421,11 +423,11 @@ function Element(parent,w,h,image) {
     //We need to do this after the update, so that the object is not out of the game area when its position is registered in the matrix
     //Update the objects matrix in case we changed our current cell
     objectPositionChanged(this.parent,bakx,baky,this.x,this.y);
-  }
+  };
 
   this.destroy=function() {
     this.element.destroy();
-  }
+  };
 
   this.setRadius=function(r) {
     var tmp=this.radius;
@@ -434,14 +436,14 @@ function Element(parent,w,h,image) {
     this.h=2*this.radius;
     var f=this.radius/tmp;
     this.element.sprite.scale(f,f);
-  }
+  };
 
   this.forward=function(distance) {
     var angle_rad=(this.rotation-90)*(Math.PI/180.0);
     var dx=Math.cos(angle_rad)*distance;
     var dy=Math.sin(angle_rad)*distance;
-    this.move(dx,dy)
-  } 
+    this.move(dx,dy);
+  };
 }
 
 //Same as Element but this time the image has en 'eye' to indicate the direction
@@ -455,8 +457,8 @@ function EyedElement(parent,w,h,image) {
   this.parent=parent;
   this.radius=this.w/2;
   this.image=image;
-  this.element=new GSprite(this.x,this.y,this.w,this.h,this.image)
-  this.eye=new GSprite(this.x,this.y,9,9,"images/eye.png")
+  this.element=new GSprite(this.x,this.y,this.w,this.h,this.image);
+  this.eye=new GSprite(this.x,this.y,9,9,"images/eye.png");
   this.update=function() {
     if (this.x>=width) this.x-=width;
     if (this.x<0) this.x+=width;
@@ -465,7 +467,7 @@ function EyedElement(parent,w,h,image) {
     this.element.position(this.x-this.w/2,this.y-this.h/2);
     this.eye.position(this.element.x+this.eye.relx,this.element.y+this.eye.rely);
     return;
-  }
+  };
   this.move=function(x,y) {
     var bakx=this.x;
     var baky=this.y;
@@ -475,7 +477,7 @@ function EyedElement(parent,w,h,image) {
     //We need to do this after the update, so that the object is not out of the game area when its position is registered in the matrix
     postMortemDebug='opc from ('+bakx+','+baky+') to ('+this.x+','+this.y+')';
     objectPositionChanged(this.parent,bakx,baky,this.x,this.y);
-  }
+  };
   this.rotate=function(angle_deg) {
     this.rotation+=angle_deg;
     var angle_rad=(this.rotation-90)*(Math.PI/180.0);
@@ -486,20 +488,20 @@ function EyedElement(parent,w,h,image) {
     this.eye.relx=x;
     this.eye.rely=y;
     this.eye.position(this.element.x+this.eye.relx,this.element.y+this.eye.rely);
-  }
+  };
   this.forward=function(distance) {
     var angle_rad=(this.rotation-90)*(Math.PI/180.0);
     var dx=Math.cos(angle_rad)*distance;
     var dy=Math.sin(angle_rad)*distance;
     this.move(dx,dy);
-  }
+  };
   this.changeImage=function(image) {
     this.image=image;
     this.element.changeImage(this.image);
-  }
+  };
   this.destroy=function() {
     this.element.destroy();
-  }
+  };
 }
 
 //All the motion member functions of Green and Red take values in pixels/sec or in degrees/sec
@@ -524,7 +526,7 @@ function Green() {
       document.getElementById('painSensor').innerHTML=Math.round(this.getPain()*1000)/1000;
       document.getElementById('lustSensor').innerHTML=Math.round(this.getLust()*1000)/1000;
     }
-    if (this.cumulatedFatigueDistance<equilibrumSpeed*deltaTime) this.cumulatedFatigueDistance=0
+    if (this.cumulatedFatigueDistance<equilibrumSpeed*deltaTime) this.cumulatedFatigueDistance=0;
     else this.cumulatedFatigueDistance-=equilibrumSpeed*deltaTime;
 
     this.hunger+=hungerEvolution*deltaTime;
@@ -533,22 +535,22 @@ function Green() {
     this.lust+=lustEvolution*deltaTime;
     if (this.lust>1) this.lust=1;
     this.age++;
-  }
+  };
   this.forward=function (d) {
     this.element.forward(d*gDeltaTime);
     //Add the distance to the running count of distance
     this.cumulatedFatigueDistance+=d*deltaTime;
-  }
+  };
   this.die=function() {
     this.element.changeImage('images/gray.png');
     this.element.eye.hide();
     this.color=4;
     this.element.color=4;
     this.type='cadaver';
-  }
+  };
   this.decompose=function() {
     this.element.destroy();
-  }
+  };
   this.element.color=1;
 
   //Add the object to the array of color dots (used by the raycast engine)
@@ -563,24 +565,25 @@ function Green() {
   this.rayCastCacheDate=-1;
   this.age=-1;
   //Somesthesic sensors
-  this.getHunger=function() {return (this.hunger);}
-  this.getFatigue=function() {return Math.min(1.035-Math.exp((-this.cumulatedFatigueDistance+300*Math.log(1.035))/300.0),1);}
-  this.getPain=function() {return (this.pain);}
-  this.getLust=function() {return (this.lust);}
+  this.getHunger=function() {return (this.hunger);};
+  this.getFatigue=function() {return Math.min(1.035-Math.exp((-this.cumulatedFatigueDistance+300*Math.log(1.035))/300.0),1);};
+  this.getPain=function() {return (this.pain);};
+  this.getLust=function() {return (this.lust);};
   this.smellAttenuation=function(distance) {
     //f(0)=1
     //f(40)=0.5
     //f(1000)=0
     return (10000/((distance+100)*(distance+100))-0.0093);
-  }
+  };
   this.getSmell=function() {
-    if (this.contact!=null) {
-      var smell=new Color((this.contact.element.color==2)?1:0,(this.contact.element.color==1)?1:0,(this.contact.element.color==3)?1:0);
+    var smell;
+    if (this.contact!==null) {
+      smell=new Color((this.contact.element.color==2)?1:0,(this.contact.element.color==1)?1:0,(this.contact.element.color==3)?1:0);
       if (this.contact.element.color==4) smell=new Color(1,1,1);
     }
-    else var smell=new Color(0,0,0);
+    else smell=new Color(0,0,0);
     return (smell);
-  }
+  };
   this.getColor=function() {
     //We store a cached copy of what the green element 'sees'. The cache lifetime is one frame
     if (this.rayCastCacheDate!=frame) {
@@ -588,10 +591,10 @@ function Green() {
       this.rayCastCacheDate=frame;
     }
     return (this.rayCastCache);
-  }
+  };
   this.rotate=function(r) {
     this.element.rotate(r*gDeltaTime);
-  }
+  };
 
   //Register this green element in the table of green elements held by god.js and that is used to iterate over all green elements
   registerGreen(this);
@@ -609,35 +612,36 @@ function Red() {
     //f(40)=0.5
     //f(1000)=0
     return (10000/((distance+100)*(distance+100))-0.0093);
-  }
+  };
   this.getSmell=function() {
-    if (this.contact!=null) {
-      var smell=new Color((this.contact.element.color==2)?1:0,(this.contact.element.color==1)?1:0,(this.contact.element.color==3)?1:0);
+    var smell;
+    if (this.contact!==null) {
+      smell=new Color((this.contact.element.color==2)?1:0,(this.contact.element.color==1)?1:0,(this.contact.element.color==3)?1:0);
       if (this.contact.element.color==4) smell=new Color(1,1,1);
     }
-    else var smell=new Color(0,0,0);
+    else smell=new Color(0,0,0);
     return (smell);
-  }
-  this.getHunger=function() {return (this.hunger);}
-  this.getColor=function() {return (rayCast(this.element));}
+  };
+  this.getHunger=function() {return (this.hunger);};
+  this.getColor=function() {return (rayCast(this.element));};
   this.update=function(deltaTime) {
     this.element.update();
     this.hunger+=0.05*deltaTime;
-  }
+  };
   this.forward=function (d) {
     this.element.forward(d*gDeltaTime);
-  }
+  };
   this.die=function() {
     this.element.changeImage('images/gray.png');
     this.element.eye.hide();
     this.color=4;
-  }
+  };
   this.decompose=function() {
     this.element.destroy();
-  }
+  };
   this.rotate=function(angle) {
     this.element.rotate(angle*gDeltaTime);
-  }
+  };
   this.element.color=2;
   this.element.colorDotsContainer=colorDots.pushBack(this.element);
   registerRed(this);
@@ -648,14 +652,14 @@ function Water() {
   this.type='water';
   this.update=function() {
     this.element.update();
-  }
+  };
   this.changeRadius=function(dr) {
     if (this.element.radius<-dr) dr=-this.element.radius;
     this.element.setRadius(this.element.radius+dr);
-  }
+  };
   this.destroy=function() {
     this.element.destroy();
-  }
+  };
   this.element.color=3;
 
   //See comments in class 'Green'
@@ -715,20 +719,20 @@ function Vector() {
     var m=this.magnitude();
     this.x/=m;
     this.y/=m;
-  }
+  };
   this.magnitude2=function() {
     return (this.x*this.x+this.y*this.y);
-  }
+  };
   this.magnitude=function() {
     return Math.sqrt(this.magnitude2());
-  }
+  };
   this.dot=function(vec) {
     return (this.x*vec.x+this.y*vec.y);
-  }
+  };
   this.multiply=function(k) {
     this.x*=k;
     this.y*=k;
-  }
+  };
 }
 
 function rad(deg) {
@@ -746,10 +750,11 @@ function distance(a,b) {
 //Performs a narrow-phase raycast on a specific pair of objects
 //TODO take as a parameter the shift to operate
 function rayCastNarrowPhase(casterDot,receiverDot,ray,shiftx,shifty) {
-  if (shiftx==undefined || shifty==undefined)
-    var iterations=1;
+  var iterations;
+  if (shiftx===undefined || shifty===undefined)
+    iterations=1;
   else
-    var iterations=-1;
+    iterations=-1;
   var minDist2=999999;
   move=function(x,y) {
     var bakx=receiverDot.x;
@@ -760,13 +765,14 @@ function rayCastNarrowPhase(casterDot,receiverDot,ray,shiftx,shifty) {
     receiverDot.x=bakx;
     receiverDot.y=baky;
     return (d2);
-  }
+  };
   var minIX, minIY;
-  var minPos=new function() {this.x=0; this.y=0;};
+  var minPos=function() {this.x=0; this.y=0;};
+  var ix,iy,d2;
   if (iterations==-1) {
-    var ix=shiftx;
-    var iy=shifty;
-    var d2=move(ix*width,iy*height);
+    ix=shiftx;
+    iy=shifty;
+    d2=move(ix*width,iy*height);
     if (d2<minDist2) {
       minDist2=d2;
       minIX=ix;
@@ -776,9 +782,9 @@ function rayCastNarrowPhase(casterDot,receiverDot,ray,shiftx,shifty) {
     }
   }
   else {
-    for (var ix=-iterations; ix<=iterations; ix++) {
-      for (var iy=-iterations; iy<=iterations; iy++) {
-        var d2=move(ix*width,iy*height);
+    for (ix=-iterations; ix<=iterations; ix++) {
+      for (iy=-iterations; iy<=iterations; iy++) {
+        d2=move(ix*width,iy*height);
         if (d2<minDist2) {
           minDist2=d2;
           minIX=ix;
@@ -801,16 +807,12 @@ function rayCastNarrowPhase(casterDot,receiverDot,ray,shiftx,shifty) {
     isOnRay=true;
   }
 
-  return new function() {this.isOnRay=isOnRay; this.distance2=distanceOnRay2;};
+  return function() {this.isOnRay=isOnRay; this.distance2=distanceOnRay2;};
 }
 
 //New broadphase algorithm for the raycast. Has worse performances than the old one so unused
 function rayCastBroadPhase_new(caster, ray, x, y) {
-  var miny;
-  var maxy;
-
   var color=-1;
-  var minZBuffer2=999999;
 
   if (ray.angle>360) ray.angle-=360;
   else if (ray.angle<0) ray.angle+=360;
@@ -831,9 +833,10 @@ function rayCastBroadPhase_new(caster, ray, x, y) {
   else console.log(ray.angle);
 
   var alreadyChecked=Array();
+  var j;
   for (var i=-10; i<10; i++) {
     alreadyChecked[i]=Array();
-    for (var j=-10; j<10; j++)
+    for (j=-10; j<10; j++)
       alreadyChecked[i][j]=false;
   }
   
@@ -846,30 +849,30 @@ function rayCastBroadPhase_new(caster, ray, x, y) {
     //We can't write directly to x because x and y may be swapped several times in the sub-loop
     var ox=nx*swapx;
     var max=(x<2)?2*nx+5:9;
-    for (var j=0; j<=max; j++) {
-      var ny=(j%2==0)?j/2:-(j+1)/2;
+    for (j=0; j<=max; j++) {
+      var ny=(j%2===0)?j/2:-(j+1)/2;
       if (swapy==-1) {
-        var y=ox;
-        var x=swapx*ny;
+        y=ox;
+        x=swapx*ny;
       }
       else {
-        var y=ny;
-        var x=ox;
+        y=ny;
+        x=ox;
       }
       //console.log('exploring cell at '+caster.x+' '+caster.y+' '+x+' '+y);
       //To store a potention shift
       var modVec=new Vector();
       var cell=getMatrixCellShifted(caster.x,caster.y,x,y,modVec);
       alreadyChecked[x][y]=true;
-      if (cell.length!=0) {
-        for (var dot=cell.first; dot!=null; dot=dot.next) {
+      if (cell.length!==0) {
+        for (var dot=cell.first; dot!==null; dot=dot.next) {
           if (caster!=dot.data.element) {
             drawLine=true;
             //console.log('narrow');
             var ret=rayCastNarrowPhase(caster,dot.data.element,ray,modVec.x,modVec.y);  //TESTME tell how to shift
             qcount++;
             gNarrowPhases++;
-            if (ret.isOnRay==true && ret.distance2<Math.pow(5*matrixCellSize,2)) {  //TODO (5*matricCellSize)^2 is constant, hard-code it
+            if (ret.isOnRay===true && ret.distance2<Math.pow(5*matrixCellSize,2)) {  //TODO (5*matricCellSize)^2 is constant, hard-code it
               gNarrowPhases_++;
               qsum++;
               zBuffer2=ret.distance2;
@@ -877,19 +880,19 @@ function rayCastBroadPhase_new(caster, ray, x, y) {
               //Explore nearby cells too
               for (var x2=-1; x2<=1; x2++) {
                 for (var y2=-1; y2<=1; y2++) {
-                  if (!(x2==0 && y2==0)) {
+                  if (!(x2===0 && y2===0)) {
                     var x3=x+x2;
                     var y3=y+y2;
-                    if (alreadyChecked[x3][y3]==false) {
+                    if (alreadyChecked[x3][y3]===false) {
                       //TODO with swap : if (x3<=5 && x3>=-1 && y3>=-4 && y3<=4) {
                         //To store a potention shift
-                        var modVec=new Vector();
+                        modVec=new Vector();
                         var cell2=getMatrixCellShifted(caster.x,caster.y,x3,y3,modVec);
-                        if (cell.length!=0) {
-                          for (var dot2=cell.first; dot2!=null; dot2=dot2.next) {
+                        if (cell.length!==0) {
+                          for (var dot2=cell.first; dot2!==null; dot2=dot2.next) {
                             gNarrowPhases2++;
                             var ret2=rayCastNarrowPhase(caster,dot2.data.element,ray,modVec.x,modVec.y);
-                            if (ret2.isOnRay==true) {
+                            if (ret2.isOnRay===true) {
                               gNarrowPhases2_++;
                               var zBufferTemp2=ret2.distance2;
                               if (zBufferTemp2<zBuffer2) {
@@ -934,8 +937,7 @@ function rayCastBroadPhase(caster, ray) {
   minZBuffer2=999999;
 
   //Look in a cell (with a delta) and act if there is something there
-  l=function(x,y,minZBuffer2,color,ray,caster,swapx,swapy) {
-    var bakx=x, baky=y;
+  l=function(x,y,minZBuffer2,color,ray,caster) {
     x+=Math.floor(caster.x/matrixCellSize);
     y+=Math.floor(caster.y/matrixCellSize);
     var modVec=new Vector();
@@ -946,12 +948,12 @@ function rayCastBroadPhase(caster, ray) {
     //TODO see why matrixW is not correct
     //To store a potential shift
     var cell=getMatrixCell(x*matrixCellSize,y*matrixCellSize);
-    for (dot=cell.first; dot!=null; dot=dot.next) {
+    for (dot=cell.first; dot!==null; dot=dot.next) {
       if (caster!=dot.data.element) { //FIXME
         gNarrowPhases++;
         var ret=rayCastNarrowPhase(caster,dot.data.element,ray,modVec.x,modVec.y);  //FIXME
         qcount++;
-        if (ret.isOnRay==true) {
+        if (ret.isOnRay===true) {
           gNarrowPhases_++;
           qsum++;
           if (ret.distance2<minZBuffer2) {
@@ -961,7 +963,7 @@ function rayCastBroadPhase(caster, ray) {
         }
       }
     }
-    return (new function() {this.minZBuffer2=minZBuffer2; this.color=color;});
+    return (function() {this.minZBuffer2=minZBuffer2; this.color=color;});
   };
 
   if (ray.angle>360) ray.angle-=360;
@@ -996,9 +998,9 @@ function rayCastBroadPhase(caster, ray) {
 
   var maxDist=width;
   if (minZBuffer2<=maxDist*maxDist) //TODO hard-code maxDist^2
-    return (new function() {this.color=color; this.distance2=minZBuffer2});
+    return (function() {this.color=color; this.distance2=minZBuffer2;});
   else
-    return (new function() {this.color=-1; this.distance2=999999});
+    return (function() {this.color=-1; this.distance2=999999;});
 }
 
 function Color(r,g,b) {
@@ -1010,12 +1012,11 @@ function Color(r,g,b) {
     this.r*=sat;
     this.g*=sat;
     this.b*=sat;
-  }
+  } ;
 }
 
 //Calculates the ray direction and calls the broadphase
 function rayCast(casterDot) {
-  var timeBefore=time();  //performance benchmark (DELETEME in final version)
   var ray=new Vector();
   //We add 270 each time because in our engine 0° means north but for trig functions, 0° means east
   ray.x=Math.cos(rad(casterDot.rotation+270));  //TODO tabulate these functions
