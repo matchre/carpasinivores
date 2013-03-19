@@ -1,7 +1,7 @@
-# Carpasinivores
+# Grain 3.0 : les carpasinivores
 
-Grain 3.0 : [les carpasinivores](http://inriamecsci.github.com/grains/carpasinivores)
-Documentation : [wiki](https://github.com/InriaMecsci/carpasinivores/wiki)
+* [Le grain en action](http://inriamecsci.github.com/#!/grains/carpasinivores)
+* [Documentation](https://github.com/InriaMecsci/carpasinivores/wiki)
 
 ## Repository architecture
 
