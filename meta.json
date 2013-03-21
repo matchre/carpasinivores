@@ -2,4 +2,31 @@
 	"name": "Les carpasinivores",
 	"width": "800px",
 	"height": "1000px"
+	"comment" : "",
+	"links" : [
+		{
+			"title" : "Contenus associés à ce grain",
+			"uri" : ""
+		}
+		],
+	"authors" : [
+		{			
+		        "name" : "Matheron, Guillaume",
+			"email" : "guillaume.quest@gmail.com"
+			"role" : "auteur",
+			"comment" : "version HTLM5/JS"
+		}
+		],
+	"licenses" : [
+		{
+			"name" : "CC BY-NC-SA",
+			"uri" : "http://creativecommons.org/licenses/by-nc-sa/3.0/fr",
+			"comment" : "s'applique aux documents"
+		},
+		{
+			"name" : "CeCILL-C",
+			"uri" : "http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html",
+			"comment" : "s'applique au code source"
+		}
+		]
 }
