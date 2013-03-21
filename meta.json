@@ -11,8 +11,14 @@
 		],
 	"authors" : [
 		{			
+		        "name" : "mnemosyne",
+			"url" : "https://team.inria.fr/mnemosyne",
+			"role" : "concepteur",
+			"comment" : "travail collectif sur le cahier des charges"
+		},
+		{			
 		        "name" : "Matheron, Guillaume",
-			"email" : "guillaume.quest@gmail.com"
+			"email" : "guillaume.quest@gmail.com",
 			"role" : "auteur",
 			"comment" : "version HTLM5/JS"
 		}
