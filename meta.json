@@ -1,7 +1,7 @@
 {
 	"name": "Les carpasinivores",
 	"width": "800px",
-	"height": "1000px"
+	"height": "1000px",
 	"comment" : "",
 	"links" : [
 		{
@@ -10,14 +10,14 @@
 		}
 		],
 	"authors" : [
-		{			
-		        "name" : "mnemosyne",
+		{
+		    "name" : "mnemosyne",
 			"url" : "https://team.inria.fr/mnemosyne",
 			"role" : "concepteur",
 			"comment" : "travail collectif sur le cahier des charges"
 		},
-		{			
-		        "name" : "Matheron, Guillaume",
+		{
+		    "name" : "Matheron, Guillaume",
 			"email" : "guillaume.quest@gmail.com",
 			"role" : "auteur",
 			"comment" : "version HTLM5/JS"
