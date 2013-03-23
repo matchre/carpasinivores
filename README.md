@@ -1,5 +1,7 @@
 # Grain 3.0 : les carpasinivores
 
+[![Build Status](https://travis-ci.org/InriaMecsci/carpasinivores.png?branch=master)](https://travis-ci.org/InriaMecsci/carpasinivores)
+
 * [Le grain en action](http://inriamecsci.github.com/#!/grains/carpasinivores)
 * [Documentation](https://github.com/InriaMecsci/carpasinivores/wiki)
 
