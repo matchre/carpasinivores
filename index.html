@@ -28,20 +28,25 @@
 <div id="main" class="container">
 
 <!-- Buttons -->
-<p><input type="button" name="start" value="Start" id="start" onclick="startClicked();" />
+<div class="row">
+<div class="span12">
+
+<input type="button" name="start" value="Start" id="start" onclick="startClicked();" />
 <input type="button" name="stop" value="Stop" id="stop" onclick="stop();" style="display: none; margin-right: 50px;" />
 <input type="button" name="restart" value="Restart" id="restart" onclick="location='#autoStart=true'; location.reload(true);" style="display: none;" />
 <input type="button" name="retry" value="Reconfigure" id="retry" onclick="location.reload(true);" style="display:none" />
 <input type="button" onclick="location='index.html';" id="ckoica" style="display: none;" value="En savoir plus" />
-</p>
+<br /><br />
+</div> <!-- span12 -->
+</div> <!-- row -->
 
-<div class="container-fluid">
-<div class="row-fluid">
+<div class="row">
 
 <div id="left" class="span4">
 
 <!-- Initial values form -->
 <h3 id="paramsForm_">Simulation parameters</h3>
+<br />
 <form id="paramsForm" onsubmit="startClicked()">
 <table>
 <tr><td><label for="gameMode">Game mode</label></td><td><select id="gameMode">
@@ -73,7 +78,9 @@
 
 <!-- Editor code area -->
 <div id="editor">
-  <textarea id="code" class="field span 12" rows="34" cols="90">
+  <h3 id="paramsForm_">Simulation code</h3>
+  <br />
+  <textarea id="code">
   </textarea>
   <br />
   <input id="resetCode" type="button" value="Reset to default code" onclick="confirm('You\'ll lose all your code !') && resetCode();" />
@@ -106,8 +113,6 @@
 </table>
 
 </div> <!-- Right -->
-
-</div> <!-- Container fluid -->
 
 </div> <!-- Main -->
 
