@@ -167,7 +167,6 @@ function loaded() {
      cookie=getParamsCookie(true,false);
      console.log('setting cookie because noSetCookie is false '+cookie);
      setCookie('params',cookie,3650);
-     setCookie('code',document.getElementById('code').value,3650);
 
   if (argParams!=='' && argParams.search('autoStart')!=-1) {
     document.getElementById('ckoica').style.display='';
@@ -199,7 +198,9 @@ function loaded() {
   myCodeMirror = CodeMirror.fromTextArea( document.getElementById('code'),
                                           {lineNumbers: true});
 
-  resetCode(code);
+  code = resetCode(code);
+
+  setCookie('code',code,3650);
 }
 
 function resetCode(code) {
@@ -229,8 +230,10 @@ function resetCode(code) {
 
   if (code !== null && code != undefined && code != "") {
     myCodeMirror.setValue(code) ;
+    return code;
   } else {
     myCodeMirror.setValue(defaultCode) ;
+    return defaultCode;
   }
 }
 
@@ -257,7 +260,7 @@ function startClicked() {
   var cookie=getParamsCookie(true,false);
   console.log('setting cookie '+cookie);
   setCookie('params',cookie,3650);
-  setCookie('code',document.getElementById('code').value,3650);
+  setCookie('code',myCodeMirror.getValue(),3650);
 
   //Allocate matrix
   matrixW=width/matrixCellSize;
@@ -286,7 +289,7 @@ function startClicked() {
   }
 
   //Hide code panel
-  var e1=document.getElementById('code');
+  var e1=document.getElementById('editor');
   var e2=document.getElementById('start');
   e1.style.display='none';
   e2.style.display='none';

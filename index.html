@@ -72,9 +72,12 @@
 <div id="right" class="span8">
 
 <!-- Editor code area -->
-<textarea id="code" class="field span 12" rows="34" cols="90">
-</textarea>
-<br /><input id="resetCode" type="button" value="Reset to default code" onclick="confirm('You\'ll lose all your code !') && resetCode();" />
+<div id="editor">
+  <textarea id="code" class="field span 12" rows="34" cols="90">
+  </textarea>
+  <br />
+  <input id="resetCode" type="button" value="Reset to default code" onclick="confirm('You\'ll lose all your code !') && resetCode();" />
+</div>
 
 <!-- Log/control area -->
 <div id="controlPanel" style="display: none;">
