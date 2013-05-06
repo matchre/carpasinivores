@@ -8,6 +8,8 @@ var lastUpdateTime;
 //Used by the raycast engine to keep a single list of all colored elements
 var colorDots=new LinkedList();
 
+var myCodeMirror ;
+
 function time() {
   return (new Date().getTime())/1000.0;
 }
@@ -141,19 +143,12 @@ function loaded() {
   }
 
   var code=getCookie('code');
-  if (code!==null && code!=='' && code!==undefined)
-    document.getElementById('code').innerHTML=code;
-  else
-    resetCode();
-  
-  console.log('argParams='+argParams);
+    
   var cookie;
   if (argParams==='' || argParams=='autoStart=true')
     cookie=getCookie('params');
   else
     cookie=argParams.replace(/=/g,',');  //We cheat a little since the arg params have the same syntax as the cookie
-
-  console.log(cookie);
 
   if (cookie!==null && cookie!=='' && cookie!==undefined) {
     var fields=cookie.split('&');
@@ -201,11 +196,13 @@ function loaded() {
 
   if (argParams.search('startInStoppedState')!=-1) skipToStoppedState();
 
-  var myCodeMirror = CodeMirror.fromTextArea(document.getElementById('code'));
+  myCodeMirror = CodeMirror.fromTextArea( document.getElementById('code'),
+                                          {lineNumbers: true});
 
+  resetCode(code);
 }
 
-function resetCode() {
+function resetCode(code) {
   var defaultCode="//var1 : sees water";
   defaultCode+="\n//var2 : direction";
   defaultCode+="\n//var3 : last hunger";
@@ -229,7 +226,12 @@ function resetCode() {
   defaultCode+="\n    me.var3=me.getHunger();";
   defaultCode+="\n  }";
   defaultCode+="\n}";
-  document.getElementById('code').value=defaultCode;
+
+  if (code !== null && code != undefined && code != "") {
+    myCodeMirror.setValue(code) ;
+  } else {
+    myCodeMirror.setValue(defaultCode) ;
+  }
 }
 
 function startClicked() {

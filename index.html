@@ -16,34 +16,12 @@
   <script type="text/javascript" src="js/god.js"></script>
   <script type="text/javascript" src="js/ia.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
-  <style type="text/css">
-      #controlPanel {
-      }
-      #debug2 {
-        display:block;
-      }
-   /*   #left {
-        float:left;
-        margin-right: 30px;
-        padding: 0;
-      }
-
-      #right {
-      }
-
-      #footer {
-        clear: both;
-      }*/
-
-      #main {
-        margin-top: 60px;
-      }
-
-  </style>
+  
 
   <link href="vendor/bootstrap-2.0.4/css/bootstrap.css" rel="stylesheet">
   <link href="vendor/bootstrap-2.0.4/css/bootstrap-responsive.css" rel="stylesheet">
   <link href="vendor/codemirror-3.12/lib/codemirror.css" rel="stylesheet">
+  <link href="main.css" rel="stylesheet">
 </head>
 <body onload="loaded();">
 
@@ -60,7 +38,7 @@
 <div class="container-fluid">
 <div class="row-fluid">
 
-<div id="left" class="span6">
+<div id="left" class="span4">
 
 <!-- Initial values form -->
 <h3 id="paramsForm_">Simulation parameters</h3>
@@ -91,7 +69,7 @@
 <div id="score"></div>
 </div>
 
-<div id="right" class="span6">
+<div id="right" class="span8">
 
 <!-- Editor code area -->
 <textarea id="code" class="field span 12" rows="34" cols="90">
