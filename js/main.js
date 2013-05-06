@@ -141,7 +141,7 @@ function loaded() {
   }
 
   var code=getCookie('code');
-  if (code!==null && code!=='')
+  if (code!==null && code!=='' && code!==undefined)
     document.getElementById('code').innerHTML=code;
   else
     resetCode();
@@ -155,7 +155,7 @@ function loaded() {
 
   console.log(cookie);
 
-  if (cookie!==null && cookie!=='') {
+  if (cookie!==null && cookie!=='' && cookie!==undefined) {
     var fields=cookie.split('&');
     for (var i in fields) {
       if (fields[i]==='') continue;
@@ -179,7 +179,7 @@ function loaded() {
     startClicked();
   }
   if (argParams.search('noEditor')!=-1) {
-alert('a');
+    alert('a');
     document.getElementById('code').style.display='none';
     document.getElementById('resetCode').style.display='none';
   }
@@ -200,6 +200,9 @@ alert('a');
   }
 
   if (argParams.search('startInStoppedState')!=-1) skipToStoppedState();
+
+  var myCodeMirror = CodeMirror.fromTextArea(document.getElementById('code'));
+
 }
 
 function resetCode() {
