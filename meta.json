@@ -2,38 +2,38 @@
     "name": "Les carpasinivores",
     "width": "1000px",
     "height": "1000px",
-    "comment" : "Grain de simulation de carpasinivores",
-    "link" : "https://github.com/InriaMecsci/carpasinivores/wiki",
-    "links" : [
+    "comment": "Grain de simulation de carpasinivores",
+    "link": "https://github.com/InriaMecsci/carpasinivores/wiki",
+    "links": [
         {
-            "title" : "Contenus associés à ce grain",
-            "uri" : "https://github.com/InriaMecsci/carpasinivores/wiki"
+            "title": "Contenus associés à ce grain",
+            "uri": "https://github.com/InriaMecsci/carpasinivores/wiki"
         }
-        ],
-    "authors" : [
+    ],
+    "authors": [
         {
-            "name" : "mnemosyne",
-            "url" : "https://team.inria.fr/mnemosyne",
-            "role" : "concepteur",
-            "comment" : "travail collectif sur le cahier des charges"
+            "name": "mnemosyne",
+            "url": "https://team.inria.fr/mnemosyne",
+            "role": "concepteur",
+            "comment": "travail collectif sur le cahier des charges"
         },
         {
-            "name" : "Matheron, Guillaume",
-            "email" : "guillaume.quest@gmail.com",
-            "role" : "auteur",
-            "comment" : "version HTLM5/JS"
+            "name": "Matheron, Guillaume",
+            "email": "guillaume.quest@gmail.com",
+            "role": "auteur",
+            "comment": "version HTLM5/JS"
         }
-        ],
-    "licenses" : [
+    ],
+    "licenses": [
         {
-            "name" : "CC BY-NC-SA",
-            "uri" : "http://creativecommons.org/licenses/by-nc-sa/3.0/fr",
-            "comment" : "s'applique aux documents"
+            "name": "CC BY-NC-SA",
+            "uri": "http://creativecommons.org/licenses/by-nc-sa/3.0/fr",
+            "comment": "s'applique aux documents"
         },
         {
-            "name" : "CeCILL-C",
-            "uri" : "http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html",
-            "comment" : "s'applique au code source"
+            "name": "CeCILL-C",
+            "uri": "http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html",
+            "comment": "s'applique au code source"
         }
-        ]
+    ]
 }
